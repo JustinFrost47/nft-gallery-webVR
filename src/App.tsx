@@ -1,17 +1,14 @@
-import { Button } from "@/components/ui/button"
-
-
-
+import AllNfts from './pages/nfts/AllNfts'
 
 import './App.css'
 
 function App() {
 
-  console.log(import.meta.env.VITE_TEMP)
+
   return (
-    <>
-    <Button>Click me</Button>
-    </>
+    <div className=' w-full'>
+      <AllNfts/>
+    </div>
   )
 }
 

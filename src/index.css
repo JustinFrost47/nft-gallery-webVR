@@ -67,3 +67,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+body{
+  /* background-color: #1f1430; */
+  background-color: #1E1B4B;
+}
+
