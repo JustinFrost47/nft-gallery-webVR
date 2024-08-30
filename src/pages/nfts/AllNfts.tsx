@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button"
+import ViewNft from "./ViewNft";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { AccountLayout, getTokenMetadata } from "@solana/spl-token";
 import axios from 'axios';
@@ -10,9 +10,13 @@ const TOKEN_2022_PROGRAM_ID = new PublicKey(
 
 let tokens: any;
 
+const defaultImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s"
+
 export default function AllNfts() {
 
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState(false)
+  const [metaData, setMetadata] = useState({})
 
 
 
@@ -75,16 +79,36 @@ export default function AllNfts() {
     }
   };
 
+  const ShowViewer = (data : any) => {
+    setMetadata(data)
+    setView(true)
+  }
+
 
 
   return (
-    <div>
+    <div className="flex flex-column items-center justify-center">
       {loading ? (
         <p>Loading...
           
         </p>
       ) : (
-        <div className=" w-full min-h-40 bg-red-50">
+        <div className=" w-10/12  min-h-96  flex flex-row items-center justify-center flex-wrap ">
+
+
+
+          
+          {tokens.map((token: any, index: number) => (
+            <div key={index}>
+                      <div onClick={() => ShowViewer(token)} className="min-h-80 w-72 bg-white m-8 rounded-2xl p-4 hover:shadow-2xl hover:cursor-pointer">
+          <img src={token.metadata.image || defaultImage} alt="Image" className=" w-64 min-h-72 rounded-2xl"  />
+          <div className=" text-center p-4">{token.metadata.name || "Unnamed"}</div>
+          
+      </div>
+      {view && <ViewNft view={view} setView={setView} metadata={metaData}/>}
+      </div>
+          ))}
+        
 
         </div>
       )}
