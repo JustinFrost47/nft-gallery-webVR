@@ -1,47 +1,100 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button"
-import { createUmi } from '@metaplex-foundation/umi-bundle-defaults'
-import { mplTokenMetadata, fetchAllDigitalAssetByOwner } from '@metaplex-foundation/mpl-token-metadata'
-import { PublicKey, Connection } from "@solana/web3.js"
-import { TOKEN_PROGRAM_ID, AccountLayout } from '@solana/spl-token';
+import { Connection, PublicKey } from "@solana/web3.js";
+import { AccountLayout, getTokenMetadata } from "@solana/spl-token";
+import axios from 'axios';
 
-// import React from 'react'
-const TOKEN_METADATA_PROGRAM_ID = new PublicKey(
-  'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb' // Update this with the correct program ID for program 22
+const TOKEN_2022_PROGRAM_ID = new PublicKey(
+  'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb' // Replace with the Token-2022 program ID if different
 );
 
+let tokens: any;
 
 export default function AllNfts() {
 
+  const [loading, setLoading] = useState(true);
+
   const getNfts = async () => {
     // Use the RPC endpoint of your choice.
-  const umi = createUmi(import.meta.env.VITE_RPC_URL).use(mplTokenMetadata())
 
-  const connection = new Connection(import.meta.env.VITE_RPC_URL)
+
+    const connection = new Connection(import.meta.env.VITE_RPC_URL)
     // Convert the public key string to a PublicKey object
-    const publicKey = new PublicKey(import.meta.env.VITE_PUBLIC_KEY);
-
-    // Fetch token accounts by the owner
-    const tokenAccounts = await connection.getTokenAccountsByOwner(publicKey, {
-      programId: TOKEN_PROGRAM_ID,
-    });
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY
 
 
 
-  const assets = await fetchAllDigitalAssetByOwner(umi, import.meta.env.VITE_PUBLIC_KEY)
-  console.log("hi")
-  console.log(tokenAccounts)
+    getTokenAccounts(publicKey, connection)
+
 
 
   }
 
-  
+  async function getTokenAccounts(wallet: string, connection: Connection) {
+    try {
+      const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(wallet), {
+        programId: TOKEN_2022_PROGRAM_ID,
+      });
+      console.log(tokenAccounts)
+
+      const tokensWithMetadata = await Promise.all(
+        tokenAccounts.value.map(async (accountInfo) => {
+          const accountData = AccountLayout.decode(accountInfo.account.data);
+          const mintPublicKey = new PublicKey(accountData.mint);
+
+          // Fetch metadata account for the token mint using findProgramAddressSync
+          const metadata = await getTokenMetadata(
+            connection,
+            mintPublicKey, // Mint Account address
+          );
+          let metadataDetails = null;
+          if (metadata && metadata.uri) {
+            try {
+              // Fetch additional metadata from the URI
+              const response = await axios.get(metadata.uri);
+              metadataDetails = response.data;
+            } catch (uriError) {
+              console.error('Failed to fetch metadata from URI:', uriError);
+            }
+          }
+
+          return {
+            mint: mintPublicKey.toString(),
+            amount: accountData.amount.toString(),
+            metadata: metadataDetails || metadata,
+          };
+        })
+      );
+
+      tokens = tokensWithMetadata
+      console.log(tokens)
+    } catch (error) {
+      console.error('Failed to fetch tokens:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
 
   return (
-    <div className="flex flex-row justify-center items-center min-h-96">
-            <div className="nft-images ">
-          
-            </div>
-            <Button onClick={getNfts}>Click me</Button>
+    <div>
+      {loading ? (
+        <p>Loading...
+          <Button onClick={getNfts} />
+        </p>
+      ) : (
+        <ul>
+          {tokens.map((token: any, index: number) => (
+            <li key={index}>
+              <p>Mint: {token.mint}</p>
+              <p>Amount: {token.amount}</p>
+              <p>Metadata: {token.metadata ? token.metadata : 'No Metadata'}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
-  )
+  );
+
 }
