@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className=' w-full '>
-      <div className='text-center text-5xl p-8 m-4 text-white'> NFT Gallery </div>
+      <div className='text-center text-5xl p-8 m-4 text-white'> Holo-Vista </div>
       <AllNfts/>
       
       <IntroScreen/>
