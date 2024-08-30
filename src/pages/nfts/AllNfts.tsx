@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button"
 import { Connection, PublicKey } from "@solana/web3.js";
 import { AccountLayout, getTokenMetadata } from "@solana/spl-token";
@@ -14,25 +14,25 @@ export default function AllNfts() {
 
   const [loading, setLoading] = useState(true);
 
-  const getNfts = async () => {
-    // Use the RPC endpoint of your choice.
 
 
-    const connection = new Connection(import.meta.env.VITE_RPC_URL)
-    // Convert the public key string to a PublicKey object
-    const publicKey = import.meta.env.VITE_PUBLIC_KEY
+  useEffect(() => {
+
+    const TokenData = async () => {
+      getTokenAccounts()
+    }
+
+    TokenData()
+
+  }, [])
 
 
+  async function getTokenAccounts() {
+    const connection : Connection = new Connection(import.meta.env.VITE_RPC_URL)
+    const publicKey : string = import.meta.env.VITE_PUBLIC_KEY
 
-    getTokenAccounts(publicKey, connection)
-
-
-
-  }
-
-  async function getTokenAccounts(wallet: string, connection: Connection) {
     try {
-      const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(wallet), {
+      const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(publicKey), {
         programId: TOKEN_2022_PROGRAM_ID,
       });
       console.log(tokenAccounts)
@@ -81,18 +81,12 @@ export default function AllNfts() {
     <div>
       {loading ? (
         <p>Loading...
-          <Button onClick={getNfts} />
+          
         </p>
       ) : (
-        <ul>
-          {tokens.map((token: any, index: number) => (
-            <li key={index}>
-              <p>Mint: {token.mint}</p>
-              <p>Amount: {token.amount}</p>
-              <p>Metadata: {token.metadata ? token.metadata : 'No Metadata'}</p>
-            </li>
-          ))}
-        </ul>
+        <div className=" w-full min-h-40 bg-red-50">
+
+        </div>
       )}
     </div>
   );
