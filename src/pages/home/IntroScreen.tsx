@@ -14,6 +14,7 @@ export default function IntroScreen() {
                         <div className="text-6xl text-white p-8 m-8 ">HoloVista</div>
                         <div className="text-3xl text-white  p-8 m-8 ">Share and View NFTs in Style</div>
                     <Button className=" m-8  " onClick={() => setShowIntro(!showIntro)}> Continue </Button>
+                    <div className=" mt-20">Viewing Sample NFTs from a Devnet Wallet</div>
                     </div>
         
                 </div>
