@@ -39,7 +39,3 @@ This project is still in its early stages and is primarily a proof of concept. W
 ### **Contact**
 
 If you like the project, feel free to approach me for more metaverse-like projects. I'm open to taking on challenging work.
-
----
-
-Feel free to adjust the content as needed, especially the project URL once it's deployed.
