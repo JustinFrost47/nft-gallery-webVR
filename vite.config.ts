@@ -5,6 +5,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 export default defineConfig({
   plugins: [nodePolyfills(), react()],
+  base: "/nft-gallery-webVR/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
