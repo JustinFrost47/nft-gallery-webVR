@@ -14,6 +14,7 @@ export default function ViewNft({ view, setView, metadata }: ViewProps) {
         setView(false)
     }
 
+    console.log(metadata)
 
     return (
         <>

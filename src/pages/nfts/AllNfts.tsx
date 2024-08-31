@@ -122,7 +122,7 @@ export default function AllNfts() {
                 </div>
         )}
         {mode && mode==="3d" && (
-          <VrGallery/>
+          <VrGallery metaData={tokens}/>
         )}
         </>
 
