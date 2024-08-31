@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 import ViewNft from "./ViewNft";
+import VrGallery from "../3dGallery/VrGallery";
+import IntroScreen from "../home/IntroScreen";
+
+
 import { Connection, PublicKey } from "@solana/web3.js";
 import { AccountLayout, getTokenMetadata } from "@solana/spl-token";
 import axios from 'axios';
@@ -17,6 +21,7 @@ export default function AllNfts() {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState(false)
   const [metaData, setMetadata] = useState({})
+  const [mode, setMode] = useState("")
 
 
 
@@ -93,25 +98,36 @@ export default function AllNfts() {
           
         </p>
       ) : (
-        <div className=" w-10/12  min-h-96  flex flex-row items-center justify-center flex-wrap ">
+
+        <>
+        {mode && mode==="2d" && (
+          // <div className='text-center text-5xl p-8 m-4 text-white'> Holo-Vista </div>
+                  <div className=" w-10/12  min-h-96  flex flex-row items-center justify-center flex-wrap ">
 
 
 
           
-          {tokens.map((token: any, index: number) => (
-            <div key={index}>
-                      <div onClick={() => ShowViewer(token)} className="min-h-80 w-72 bg-white m-8 rounded-2xl p-4 hover:shadow-2xl hover:cursor-pointer">
-          <img src={token.metadata.image || defaultImage} alt="Image" className=" w-64 min-h-72 rounded-2xl"  />
-          <div className=" text-center p-4">{token.metadata.name || "Unnamed"}</div>
-          
-      </div>
-      {view && <ViewNft view={view} setView={setView} metadata={metaData}/>}
-      </div>
-          ))}
-        
+                  {tokens.map((token: any, index: number) => (
+                    <div key={index}>
+                              <div onClick={() => ShowViewer(token)} className="min-h-80 w-72 bg-white m-8 rounded-2xl p-4 hover:shadow-2xl hover:cursor-pointer">
+                  <img src={token.metadata.image || defaultImage} alt="Image" className=" w-64 min-h-72 rounded-2xl"  />
+                  <div className=" text-center p-4">{token.metadata.name || "Unnamed"}</div>
+                  
+              </div>
+              {view && <ViewNft view={view} setView={setView} metadata={metaData}/>}
+              </div>
+                  ))}
+                
+                  
+                </div>
+        )}
+        {mode && mode==="3d" && (
+          <VrGallery/>
+        )}
+        </>
 
-        </div>
       )}
+      <IntroScreen mode={mode} setMode={setMode}/>
     </div>
   );
 

@@ -1,9 +1,28 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
-export default function IntroScreen() {
+interface IntroScreenProps {
+    mode : string;
+    setMode : any;
+}
+
+export default function IntroScreen({mode, setMode} : IntroScreenProps) {
 
     const [showIntro, setShowIntro] = useState(true)
+
+    const switchMode3D = () => {
+
+        setShowIntro(!showIntro)
+        setMode('3d')
+        console.log(mode)
+    }
+
+    const switchMode2D = () => {
+
+        setShowIntro(!showIntro)
+        setMode('2d')
+
+    }
 
     return (
         <>
@@ -13,7 +32,8 @@ export default function IntroScreen() {
 
                         <div className="text-6xl text-white p-8 m-8 ">HoloVista</div>
                         <div className="text-3xl text-white  p-8 m-8 ">Share and View NFTs in Style</div>
-                    <Button className=" m-8  " onClick={() => setShowIntro(!showIntro)}> Continue </Button>
+                    <Button className=" m-8  " onClick={() => switchMode3D()}> 3D </Button>
+                    <Button className=" m-8  " onClick={() => switchMode2D()}> 2D </Button>
                     <div className=" mt-20">Viewing Sample NFTs from a Devnet Wallet</div>
                     </div>
         
