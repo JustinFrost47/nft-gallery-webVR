@@ -1,50 +1,48 @@
-# React + TypeScript + Vite
+Here’s a modest README for your project, as requested:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+# **HOLO-VISTA**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+HOLO-VISTA is an experimental project aimed at exploring how NFTs can be shared and experienced in a virtual reality environment. This project leverages Solana's Token 22 program for creating and fetching NFTs, with a VR gallery implemented using A-Frame. 
 
-## Expanding the ESLint configuration
+### **Project Overview**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This repository contains a basic implementation of a VR-based NFT gallery. Users can display and interact with their NFTs in a virtual space, offering a different perspective compared to traditional viewing methods. The current version is deployed on GitHub Pages, and you can check it out [here](https://justinfrost47.github.io/nft-gallery-webVR/).
 
-- Configure the top-level `parserOptions` property like this:
+### **Tech Stack**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Solana's Token 22 Program**: Used for NFT creation and retrieval.
+- **A-Frame**: Provides the framework for building VR scenes in the browser.
+- **React**: Frontend library used to manage the UI.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### **Usage**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To run the project locally:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/JustinFrost47/nft-gallery-webVR.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+
+Visit `https://justinfrost47.github.io/nft-gallery-webVR/` in your browser to view the project.
+
+### **Note**
+
+This project is still in its early stages and is primarily a proof of concept. While it may not be fully optimized or feature-complete, it felt good developing it.
+
+### **Contact**
+
+If you like the project, feel free to approach me for more metaverse-like projects. I'm open to taking on challenging work.
+
+---
+
+Feel free to adjust the content as needed, especially the project URL once it's deployed.
