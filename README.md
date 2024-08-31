@@ -1,6 +1,3 @@
-Here’s a modest README for your project, as requested:
-
----
 
 # **HOLO-VISTA**
 
