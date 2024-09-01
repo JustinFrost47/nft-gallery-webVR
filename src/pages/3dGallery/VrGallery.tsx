@@ -54,8 +54,8 @@ export default function VrGallery({metaData}) {
   console.log(metaData)
   return (
     <a-scene environment="preset: forest" >
-      <img id='wallTexture' src="https://images.pexels.com/photos/129731/pexels-photo-129731.jpeg" crossorigin="anonymous"/>
-      <img id='floorTexture' src="https://images.pexels.com/photos/139311/pexels-photo-139311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" crossorigin="anonymous" />
+      <img id='wallTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/wall-texture.jpeg" crossorigin="anonymous"/>
+      <img id='floorTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/floor-texture.webp" crossorigin="anonymous" />
       <a-assets>
         {metaData.map((accounts, index) => (
           <img key={index} id={`picture${index}`} src={accounts.metadata.image || defaultImage} />
