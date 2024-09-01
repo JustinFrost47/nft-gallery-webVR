@@ -47,7 +47,7 @@ export default function VrGallery({metaData}) {
 
   console.log(metaData)
   return (
-    <a-scene environment="preset: forest">
+    <a-scene environment="preset: forest" inspector-plugin-recas>
       <a-assets>
         {metaData.map((accounts, index) => (
           <img key={index} id={`picture${index}`} src={accounts.metadata.image || defaultImage} />
@@ -71,7 +71,7 @@ export default function VrGallery({metaData}) {
         <a-entity id="frame5" material="shader: flat; src: #picture1 " geometry="height: 5; width: 5" position="0.0179 3.42673 -14.37328"></a-entity> */}
 
       <a-entity id="text" text="value: Unleash Your NFTs Beyond 2D Shackles; color: #a51d2d; width: 5; anchor: align" position="-3 0.3 -3" scale="1.5 1.5 1.5"></a-entity>
-      <a-camera id="camera" position="0 1.6 0.53061" >
+      <a-camera id="camera"  position="0 1.6 0.53061" look-controls wasd-controls>
         <a-cursor color="#FAFAFA"></a-cursor>
       </a-camera>
   </a-scene>
