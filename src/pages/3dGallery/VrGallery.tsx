@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 
 
+
 const defaultImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s"
 const framePosition = [
   "-4.5 3.42673 -14.37328", //snow
@@ -53,7 +54,7 @@ export default function VrGallery({metaData}) {
 
   console.log(metaData)
   return (
-    <a-scene environment="preset: forest" >
+    <a-scene environment="preset: forest" joystick>
       <img id='wallTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/wall-texture.jpeg" crossorigin="anonymous"/>
       <img id='floorTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/floor-texture.webp" crossorigin="anonymous" />
       <a-assets>
@@ -84,8 +85,8 @@ export default function VrGallery({metaData}) {
 
       <a-entity id="text" text="anchor: align; color: #a51d2d; value: Unleash Your NFTs Beyond 2D Shackles; width: 5" position="-3 0.54272 -3" scale="1.5 1.5 1.5"></a-entity>
       
-      <a-entity id="rig" movement-controls  >
-      <a-camera id="camera"  position="0 1.6 0" look-controls="touchEnabled: true; pointerLockEnabled: true"  wasd-controls="acceleration: 10" >
+      <a-entity id="rig" >
+      <a-camera id="camera"  position="0 1.6 0" look-controls="touchEnabled: true; pointerLockEnabled: true"  wasd-controls="acceleration: 30" >
         <a-cursor color="#FAFAFA"></a-cursor>
       </a-camera>
       </a-entity>
