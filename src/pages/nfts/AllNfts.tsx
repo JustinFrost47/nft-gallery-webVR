@@ -92,7 +92,7 @@ export default function AllNfts() {
 
 
   return (
-    <div className="flex flex-column items-center justify-center">
+    <div className="flex flex-column items-center justify-center bg-gradient-to-br  from-slate-800 to-fuchsia-800">
       {loading ? (
         <p>Loading...
           
@@ -109,7 +109,7 @@ export default function AllNfts() {
           
                   {tokens.map((token: any, index: number) => (
                     <div key={index}>
-                              <div onClick={() => ShowViewer(token)} className="min-h-80 w-72 bg-white m-8 rounded-2xl p-4 hover:shadow-2xl hover:cursor-pointer">
+                              <div onClick={() => ShowViewer(token)} className="min-h-80 w-72 bg-white m-8 rounded-2xl p-4 hover:shadow-2xl hover:shadow-purple-500 hover:cursor-pointer">
                   <img src={token.metadata.image || defaultImage} alt="Image" className=" w-64 min-h-72 rounded-2xl"  />
                   <div className=" text-center p-4">{token.metadata.name || "Unnamed"}</div>
                   
