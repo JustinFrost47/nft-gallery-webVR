@@ -6,23 +6,22 @@ import { useEffect } from 'react';
 
 const defaultImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNK7-n-r_w_qCEIjsnu8VXMBamUkSmLUr9Eg&s"
 const framePosition = [
-  "-5.662 3.42673 -14.37328",
-  "-9.68111 3.42673 -8.75347",
-  "9.40154 3.42673 -1.30013",
-  "9.59621 3.42673 -8.45067",
+  "-5.662 3.42673 -14.37328", //snow
+  "9.40154 3.42673 -1.30013",//dog
+  "9.59621 3.42673 -8.45067", //tree
+  "4.301 3.42673 -14.37328", //garden
   " -9.72057 3.427 -0.054",
-  "4.301 3.42673 -14.37328"
-
+  "-9.68111 3.42673 -8.75347 "  //beast
 
 ]
 
 const rotationPositions = [
   "0 0 0",
-  "0 90.73531531030257 0",
   "0 -89.78535128597565 0",
-  "0 -90.37492485716527 0",
+  "0 -90.37492485716527 0 ",
+  "0 0 0",
   "0 89.501 0",
-  "0 0 0"
+  "0 90.73531531030257 0"
 ]
 
 export default function VrGallery({metaData}) {
@@ -71,8 +70,8 @@ export default function VrGallery({metaData}) {
         <a-entity id="frame4" material="shader: flat; src: #picture1 " rotation="0 -90.37492485716527 0" geometry="height: 5; width: 5" position="9.59621 3.42673 -8.45067"></a-entity>
         <a-entity id="frame5" material="shader: flat; src: #picture1 " geometry="height: 5; width: 5" position="0.0179 3.42673 -14.37328"></a-entity> */}
 
-      <a-entity id="text" text="value: Unleash Your NFTs Beyond 2D Boundaries; color: #a51d2d; width: 5; anchor: align" position="-3 0.3 -3" scale="1.5 1.5 1.5"></a-entity>
-      <a-camera id="camera" position="0 1.6 11.06582">
+      <a-entity id="text" text="value: Unleash Your NFTs Beyond 2D Shackles; color: #a51d2d; width: 5; anchor: align" position="-3 0.3 -3" scale="1.5 1.5 1.5"></a-entity>
+      <a-camera id="camera" position="0 1.6 0.53061" >
         <a-cursor color="#FAFAFA"></a-cursor>
       </a-camera>
   </a-scene>
