@@ -79,13 +79,13 @@ export default function VrGallery({metaData}) {
         <a-entity id="frame4" material="shader: flat; src: #picture1 " rotation="0 -90.37492485716527 0" geometry="height: 5; width: 5" position="9.59621 3.42673 -8.45067"></a-entity>
         <a-entity id="frame5" material="shader: flat; src: #picture1 " geometry="height: 5; width: 5" position="0.0179 3.42673 -14.37328"></a-entity> */}
 
-      <a-entity id="ground" scale="2.85835 2.90808 1.09738" rotation="270 0 0"   geometry="height: 7; width: 8" position="0.9618 -0.16787 -4.24439"></a-entity>
-      <a-entity id="ceiling" scale="2.858 2.908 1.097" rotation="270 0 0" material="shader: flat; color: #a13a03 "  geometry="height: 7; width: 8" position="0.962 6.80303 -4.244"></a-entity>
+      <a-entity id="ground" scale="2.85835 2.90808 1.09738" rotation="270 0 0"   geometry="height: 7; width: 8" position="-0.02 -0.16787 -4.24439"></a-entity>
+      <a-entity id="ceiling" scale="2.858 2.908 1.097" rotation="270 0 0" material="shader: flat; color: #a13a03 "  geometry="height: 7; width: 8" position="-0.02 6.80303 -4.244"></a-entity>
 
       <a-entity id="text" text="anchor: align; color: #a51d2d; value: Unleash Your NFTs Beyond 2D Shackles; width: 5" position="-3 0.54272 -3" scale="1.5 1.5 1.5"></a-entity>
       
       <a-entity id="rig" movement-controls  >
-      <a-camera id="camera"  position="0 1.6 0" look-controls="touchEnabled: true; pointerLockEnabled: true"  wasd-controls="acceleration: 40" >
+      <a-camera id="camera"  position="0 1.6 0" look-controls="touchEnabled: true; pointerLockEnabled: true"  wasd-controls="acceleration: 10" >
         <a-cursor color="#FAFAFA"></a-cursor>
       </a-camera>
       </a-entity>
