@@ -14,6 +14,7 @@ export default function ViewNft({ view, setView, metadata }: ViewProps) {
         setView(false)
     }
 
+    console.log(metadata)
 
     return (
         <>
@@ -28,7 +29,7 @@ export default function ViewNft({ view, setView, metadata }: ViewProps) {
                         </button>
 
                         <div className='text-2xl text-white text-center p-4 m-2'>{metadata.metadata.name}</div>
-                        <div className=' min-h-96 flex flex-col items-center justify-center'><img className='w-80' src={metadata.metadata.image || defaultImage} alt=""  /></div>
+                        <div className=' min-h-96 flex flex-col items-center justify-center'><img className='max-w-full' src={metadata.metadata.image || defaultImage} alt=""  /></div>
                         <div className=' text-white text-center p-4 m-2'> {metadata.metadata.description}</div>
                     </div>
 
