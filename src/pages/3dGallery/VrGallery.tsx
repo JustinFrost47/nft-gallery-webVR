@@ -55,9 +55,13 @@ export default function VrGallery({metaData}) {
   console.log(metaData)
   return (
     <a-scene environment="preset: forest" joystick>
-      <img id='wallTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/wall-texture.jpeg" crossorigin="anonymous"/>
-      <img id='floorTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/floor-texture.webp" crossorigin="anonymous" />
+      
+      
+
+
       <a-assets>
+      <img id='wallTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/wall-texture.jpeg" crossOrigin="anonymous"/>
+      <img id='floorTexture' src="https://cdn.jsdelivr.net/gh/JustinFrost47/JustinFrost47/test_nfts/assets/floor-texture.webp" crossOrigin="anonymous" />
         {metaData.map((accounts, index) => (
           <img key={index} id={`picture${index}`} src={accounts.metadata.image || defaultImage} />
         ))}
@@ -74,18 +78,13 @@ export default function VrGallery({metaData}) {
         <a-entity class="wall" id="wall4" material="shader: flat; color: #a13a03 "  geometry="height: 7; width: 8" position="-6.3937 2.63401 4.76546"></a-entity>
         <a-entity class="wall" id="wall5" material="shader: flat; color: #a13a03 "  geometry="height: 7; width: 8" position="6.1868 3.03791 4.64547"></a-entity>
 
-        {/* <a-entity id="frame1" material="shader: flat; src: #picture1 " rotation="0 89.501 0" geometry="height: 5; width: 5" position="-9.72057 3.427 -0.054"></a-entity>
-        <a-entity id="frame2" material="shader: flat; src: #picture1 " rotation="0 90.73531531030257 0" geometry="height: 5; width: 5" position="-9.68111 3.42673 -8.75347"></a-entity>
-        <a-entity id="frame3" material="shader: flat; src: #picture1 " rotation="0 -89.78535128597565 0" geometry="height: 5; width: 5" position="9.40154 3.42673 -1.30013"></a-entity>
-        <a-entity id="frame4" material="shader: flat; src: #picture1 " rotation="0 -90.37492485716527 0" geometry="height: 5; width: 5" position="9.59621 3.42673 -8.45067"></a-entity>
-        <a-entity id="frame5" material="shader: flat; src: #picture1 " geometry="height: 5; width: 5" position="0.0179 3.42673 -14.37328"></a-entity> */}
 
       <a-entity id="ground" scale="2.85835 2.90808 1.09738" rotation="270 0 0"   geometry="height: 7; width: 8" position="-0.02 -0.16787 -4.24439"></a-entity>
       <a-entity id="ceiling" scale="2.858 2.908 1.097" rotation="270 0 0" material="shader: flat; color: #a13a03 "  geometry="height: 7; width: 8" position="-0.02 6.80303 -4.244"></a-entity>
 
       <a-entity id="text" text="anchor: align; color: #a51d2d; value: Unleash Your NFTs Beyond 2D Shackles; width: 5" position="-3 0.54272 -3" scale="1.5 1.5 1.5"></a-entity>
       
-      <a-entity id="rig" >
+      <a-entity id="rig" position="0 0.6 0">
       <a-camera id="camera"  position="0 1.6 0" look-controls="touchEnabled: true; pointerLockEnabled: true"  wasd-controls="acceleration: 30" >
         <a-cursor color="#FAFAFA"></a-cursor>
       </a-camera>
