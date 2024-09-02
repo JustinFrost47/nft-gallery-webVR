@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import ViewNft from "./ViewNft";
 import VrGallery from "../3dGallery/VrGallery";
 import IntroScreen from "../home/IntroScreen";
@@ -22,6 +23,9 @@ export default function AllNfts() {
   const [view, setView] = useState(false)
   const [metaData, setMetadata] = useState({})
   const [mode, setMode] = useState("")
+  const [walletMode, setWalletMode] = useState("demo")
+
+  const { publicKey} = useWallet()
 
 
 
@@ -33,15 +37,28 @@ export default function AllNfts() {
 
     TokenData()
 
-  }, [])
+  }, [walletMode])
 
 
   async function getTokenAccounts() {
-    const connection : Connection = new Connection(import.meta.env.VITE_RPC_URL)
-    const publicKey : string = import.meta.env.VITE_PUBLIC_KEY
+    let connection : Connection ;
+    let currentPublicKey : string ;
+
+    if(walletMode==="demo"){
+
+      connection  = new Connection(import.meta.env.VITE_RPC_URL)
+      currentPublicKey = import.meta.env.VITE_PUBLIC_KEY
+
+    } else{
+
+      connection  = new Connection(import.meta.env.VITE_RPC_URL_MAINNET)
+      currentPublicKey = publicKey?.toBase58() || ""
+      console.log(currentPublicKey)
+
+    }
 
     try {
-      const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(publicKey), {
+      const tokenAccounts = await connection.getTokenAccountsByOwner(new PublicKey(currentPublicKey), {
         programId: TOKEN_2022_PROGRAM_ID,
       });
       console.log(tokenAccounts)
@@ -92,7 +109,7 @@ export default function AllNfts() {
 
 
   return (
-    <div className="flex flex-column items-center justify-center bg-gradient-to-br  from-slate-800 to-fuchsia-800">
+    <div className="flex flex-column items-center justify-center bg-gradient-to-br  from-slate-800 to-fuchsia-800 min-h-screen">
       {loading ? (
         <p>Loading...
           
@@ -127,7 +144,7 @@ export default function AllNfts() {
         </>
 
       )}
-      <IntroScreen mode={mode} setMode={setMode}/>
+      <IntroScreen mode={mode} setMode={setMode} walletMode={walletMode} setWalletMode={setWalletMode}/>
     </div>
   );
 

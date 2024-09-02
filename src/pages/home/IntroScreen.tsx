@@ -1,14 +1,27 @@
 import { useState } from "react"
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
+import SelectWalletOption from "./SelectWalletOption";
+
+
+import '@solana/wallet-adapter-react-ui/styles.css'
 
 
 interface IntroScreenProps {
     mode : string;
     setMode : any;
+    walletMode: string;
+    setWalletMode: (value: string) => void;
 }
 
-export default function IntroScreen({mode, setMode} : IntroScreenProps) {
+
+
+export default function IntroScreen({mode, setMode, walletMode, setWalletMode} : IntroScreenProps) {
+
+    const {connected} = useWallet()
 
     const [showIntro, setShowIntro] = useState(true)
+
 
     const switchMode3D = () => {
 
@@ -28,10 +41,10 @@ export default function IntroScreen({mode, setMode} : IntroScreenProps) {
         <>
         {showIntro && (
                     <div className="fixed inset-0 bg-gray-700   bg-opacity-50 flex justify-center items-center">
-                    <div className="relative bg-[url('/2d.jpg')] bg-cover bg-center bg-no-repeat p-6 rounded-lg shadow-lg w-full  h-full flex flex-col items-center justify-center ">
+                    <div className="relative bg-[url('/2d.jpg')] bg-cover bg-center bg-no-repeat p-6 rounded-lg shadow-lg w-full  h-full flex flex-col items-center justify-center overflow-scroll">
 
-                        <div className="text-6xl text-white p-8 m-8 ">HoloVista</div>
-                        <div className="text-3xl text-white  p-8 m-8 ">Share and View NFTs in Style</div>
+                        <div className="text-6xl text-white p-8  ">HoloVista</div>
+                        <div className="text-3xl text-white  p-8   ">Share and View NFTs in Style</div>
 
                     <div className="w-full flex flex-row h-1/2">
 
@@ -46,7 +59,23 @@ export default function IntroScreen({mode, setMode} : IntroScreenProps) {
                         </div>
 
                     </div>
-                    <div className=" mt-20">Viewing Sample NFTs from a Devnet Wallet</div>
+                    
+
+
+                    <div className="flex flex-col justify-center items-center">
+                    <SelectWalletOption walletMode={walletMode} setWalletMode={setWalletMode} />
+                    {walletMode==='demo' && (
+                        <p className="m-2 text-sm">Viewing Sample NFTs from a Devnet Wallet</p>
+                    )}
+                    {walletMode==='wallet' && (
+                        <div className="flex flex-row ">
+                        <WalletMultiButton />
+                        <span className=" w-4"></span>
+                        {connected && <WalletDisconnectButton /> }
+                        </div>
+
+                    )}
+                    </div>
                     </div>
         
                 </div>
