@@ -46,19 +46,35 @@ export default function IntroScreen({mode, setMode, walletMode, setWalletMode} :
                         <div className="text-6xl text-white p-8  ">HoloVista</div>
                         <div className="text-3xl text-white  p-8   ">Share and View NFTs in Style</div>
 
-                    <div className="w-full flex flex-row h-1/2">
+            {(walletMode==="wallet" && !connected) ? (
+                                    <div className="w-full flex flex-row h-1/2">
 
-                        <div className=" w-1/2 transition ease-in-out delay-150 opacity-90 h-full bg-gradient-to-br  from-fuchsia-800 to-slate-800 hover:shadow-2xl hover:shadow-fuchsia-400 hover:cursor-pointer hower:shadow-2xl  m-4 rounded-xl flex flex-col items-center justify-center" onClick={() => switchMode3D()}>
-                        <div className="lg:text-3xl sm:text-lg p-2 m-4 ">  3D Gallery </div>
-                        <div className=" text-3xl mr-12">←</div>
+                                    <div className=" w-1/2 transition ease-in-out delay-150 opacity-90 h-full bg-gradient-to-br  from-fuchsia-800 to-slate-800   m-4 rounded-xl flex flex-col items-center justify-center" >
+                                    <div className="lg:text-3xl sm:text-lg p-2 m-4 ">  3D Gallery </div>
+                                    <div className=" text-3xl mr-12">←</div>
+            
+                                    </div>
+                                    <div className=" w-1/2  transition ease-in-out delay-150 opacity-90 h-full bg-gradient-to-br  from-slate-800 to-blue-800   m-4 rounded-xl flex flex-col items-center justify-center" >
+                                    <div className="lg:text-3xl sm:text-lg p-2 m-4  ">2D Gallery  </div>
+                                    <div className=" text-3xl mr-12">→</div>
+                                    </div>
+            
+                                </div>
+            ) : (
+                <div className="w-full flex flex-row h-1/2">
 
-                        </div>
-                        <div className=" w-1/2  transition ease-in-out delay-150 opacity-90 h-full bg-gradient-to-br  from-slate-800 to-blue-800 hover:shadow-2xl hover:hover:shadow-blue-400 hover:cursor-pointer hower:shadow-2xl  m-4 rounded-xl flex flex-col items-center justify-center" onClick={() => switchMode2D()}>
-                        <div className="lg:text-3xl sm:text-lg p-2 m-4  ">2D Gallery  </div>
-                        <div className=" text-3xl mr-12">→</div>
-                        </div>
+                <div className=" w-1/2 transition ease-in-out delay-150 opacity-90 h-full bg-gradient-to-br  from-fuchsia-800 to-slate-800 hover:shadow-2xl hover:shadow-fuchsia-400 hover:cursor-pointer hower:shadow-2xl  m-4 rounded-xl flex flex-col items-center justify-center" onClick={() => switchMode3D()}>
+                <div className="lg:text-3xl sm:text-lg p-2 m-4 ">  3D Gallery </div>
+                <div className=" text-3xl mr-12">←</div>
 
-                    </div>
+                </div>
+                <div className=" w-1/2  transition ease-in-out delay-150 opacity-90 h-full bg-gradient-to-br  from-slate-800 to-blue-800 hover:shadow-2xl hover:hover:shadow-blue-400 hover:cursor-pointer hower:shadow-2xl  m-4 rounded-xl flex flex-col items-center justify-center" onClick={() => switchMode2D()}>
+                <div className="lg:text-3xl sm:text-lg p-2 m-4  ">2D Gallery  </div>
+                <div className=" text-3xl mr-12">→</div>
+                </div>
+
+            </div>
+            )}
                     
 
 
