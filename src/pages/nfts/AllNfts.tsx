@@ -51,7 +51,7 @@ export default function AllNfts() {
 
     } else{
 
-      connection  = new Connection(import.meta.env.VITE_RPC_URL_MAINNET)
+      connection  = new Connection(import.meta.env.VITE_RPC_URL)
       currentPublicKey = publicKey?.toBase58() || ""
       console.log(currentPublicKey)
 

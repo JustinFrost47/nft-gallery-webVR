@@ -34,13 +34,14 @@ export default function VrGallery({metaData}) {
         if (frame) {
           frame.setAttribute('material', `shader: flat; src: #picture${index}`);
         }
-        const walls = document.querySelectorAll('.wall')
+        
+      });
+      const walls = document.querySelectorAll('.wall')
         walls.forEach((wall, index) => {
           wall.setAttribute('material', 'shader: flat; src: #wallTexture')
         })
         document.getElementById('ground')?.setAttribute('material', 'shader: flat; src: #floorTexture; repeat: 10 1')
         document.getElementById('ceiling')?.setAttribute('material', 'shader: flat; src: #wallTexture')
-      });
     };
 
     // Add event listener for when all assets are loaded

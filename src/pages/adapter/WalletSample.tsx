@@ -1,12 +1,12 @@
 // MyComponent.js
 
 
-import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 
 const WalletSample = () => {
     const { wallet, connect, disconnect, connected, publicKey} = useWallet();
-    const { connection } = useConnection();
+    // const { connection } = useConnection();
 
     const handleConnect = async () => {
         try {
