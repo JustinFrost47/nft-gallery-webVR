@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useWallet } from "@solana/wallet-adapter-react";
-import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import SelectWalletOption from "./SelectWalletOption";
 
 
@@ -87,7 +87,7 @@ export default function IntroScreen({mode, setMode, walletMode, setWalletMode} :
                         <div className="flex flex-row ">
                         <WalletMultiButton />
                         <span className=" w-4"></span>
-                        {connected && <WalletDisconnectButton /> }
+                        
                         </div>
 
                     )}
